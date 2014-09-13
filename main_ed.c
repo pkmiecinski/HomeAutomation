@@ -6,9 +6,12 @@
 #include "bsp_buttons.h"
 #include "helpers.h"
 #include "virtual_com_cmds.h"
+#include "protocol.h"
 
 
-static uint8_t  sTxTid=0, sRxTid=0;
+int commandToProcess = 0;;
+uint8_t rxMsg, txMsg[4];
+
 static linkID_t sLinkID1 = 0;
 
 /* application Rx frame handler. */
@@ -19,49 +22,46 @@ static uint8_t sRxCallback(linkID_t);
 
 static void ed_loop()
 {
-  uint8_t  msg[2], delay = 0;
+	int retVal = SMPL_NO_ACK;
 
-  while (SMPL_SUCCESS != SMPL_Link(&sLinkID1))
-  {
-    /* blink LEDs until we link successfully */
-    toggleLED(1);
-    toggleLED(2);
-    SPIN_ABOUT_A_SECOND;
-  }
+	int retr = 0;
 
-  /* we're linked. turn off red LED. received messages will toggle the green LED. */
-  if (BSP_LED2_IS_ON())
-  {
-    toggleLED(2);
-  }
+	while (SMPL_SUCCESS != SMPL_Link(&sLinkID1))
+	{
+		/* blink LEDs until we link successfully */
+		toggleLED(1);
+		toggleLED(2);
+		SPIN_ABOUT_A_SECOND;
+	}
 
-  /* turn on RX. default is RX off. */
-  SMPL_Ioctl( IOCTL_OBJ_RADIO, IOCTL_ACT_RADIO_RXON, 0);
+	/* we're linked. turn off red LED. received messages will toggle the green LED. */
+	if (BSP_LED2_IS_ON())
+	{
+		toggleLED(1);
+	}
 
-  /* put LED to toggle in the message */
-  msg[0] = 2;  /* toggle red */
-  while (1)
-  {
-    SPIN_ABOUT_A_SECOND;
-    if (delay > 0x00)
-    {
-      SPIN_ABOUT_A_SECOND;
-    }
-    if (delay > 0x01)
-    {
-      SPIN_ABOUT_A_SECOND;
-    }
-    if (delay > 0x02)
-    {
-      SPIN_ABOUT_A_SECOND;
-    }
+	/* turn on RX. default is RX off. */
+	SMPL_Ioctl( IOCTL_OBJ_RADIO, IOCTL_ACT_RADIO_RXON, 0);
 
-    /* delay longer and longer -- then start over */
-    delay = (delay+1) & 0x03;
-    /* put the sequence ID in the message */
-    msg[1] = ++sTxTid;
-    SMPL_Send(sLinkID1, msg, sizeof(msg));
-  }
+	while (1)
+	{
+		if (commandToProcess)
+		{
+			retr = 5;
+			NWK_DELAY(1000);
+			while((retVal != SMPL_SUCCESS)||(retr!=0))
+			{
+				retVal =  SMPL_Send(sLinkID1, txMsg, sizeof(txMsg));
+				toggleLED(2);
+				NWK_DELAY(1000);
+
+				retr--;
+			}
+
+			commandToProcess = 0;
+
+		}
+	}
 }
 
 
@@ -70,40 +70,69 @@ static void ed_loop()
 /* handle received frames. */
 static uint8_t sRxCallback(linkID_t port)
 {
-  uint8_t msg[2], len, tid;
+  uint8_t len;
 
-  /* is the callback for the link ID we want to handle? */
+  toggleLED(1);
+
   if (port == sLinkID1)
   {
-    /* yes. go get the frame. we know this call will succeed. */
-     if ((SMPL_SUCCESS == SMPL_Receive(sLinkID1, msg, &len)) && len)
-     {
-       /* Check the application sequence number to detect
-        * late or missing frames... 
-        */
-       tid = *(msg+1);
-       if (tid)
-       {
-         if (tid > sRxTid)
-         {
-           /* we're good. toggle LED in the message */
-           toggleLED(*msg);
-           sRxTid = tid;
-         }
-       }
-       else
-       {
-         /* the wrap case... */
-         if (sRxTid)
-         {
-           /* we're good. toggle LED in the message */
-           toggleLED(*msg);
-           sRxTid = tid;
-         }
-       }
-       /* drop frame. we're done with it. */
-       return 1;
-     }
+	  if ((SMPL_SUCCESS == SMPL_Receive(sLinkID1, &rxMsg, &len)) && len)
+	  {
+		  switch(rxMsg)
+		  {
+			  case ED_GET_TEMP_IN:
+			  {
+				  txMsg[0] = 1;
+				  txMsg[1] = 2;
+				  txMsg[2] = 3;
+				  txMsg[3] = 4;
+				  break;
+			  }
+			  case ED_GET_TEMP_OUT:
+			  {
+				  txMsg[0] = 5;
+				  txMsg[1] = 6;
+				  txMsg[2] = 7;
+				  txMsg[3] = 8;
+				  break;
+			  }
+			  case ED_GET_HUM:
+			  {
+				  txMsg[0] = 9;
+				  txMsg[1] = 10;
+				  txMsg[2] = 11;
+				  txMsg[3] = 12;
+				  break;
+			  }
+			  case ED_GET_RAIN:
+			  {
+				  txMsg[0] = 13;
+				  txMsg[1] = 14;
+				  txMsg[2] = 15;
+				  txMsg[3] = 16;
+				  break;
+			  }
+			  case ED_GET_WINDOWS_STATE:
+			  {
+				  txMsg[0] = 17;
+				  txMsg[1] = 18;
+				  txMsg[2] = 19;
+				  txMsg[3] = 20;
+				  break;
+			  }
+			  default:
+			  {
+				  txMsg[0] = 0xFF;
+				  txMsg[1] = 0xFF;
+				  txMsg[2] = 0xFF;
+				  txMsg[3] = 0xFF;
+				  break;
+			  }
+		  }
+		  commandToProcess = 1;
+
+	  return 1;
+	  }
   }
   /* keep frame for later handling. */
   return 0;
