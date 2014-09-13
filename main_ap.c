@@ -136,6 +136,11 @@ __interrupt void USCI0RX_ISR(void)
   {
 	  txMsg = ED_GET_WINDOWS_STATE;
   }
+  else
+  {
+	  trace("Command not supported!\n\r");
+	  return;
+  }
 
   sendMessage = 1;
 }

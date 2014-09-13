@@ -9,7 +9,7 @@ CG_TOOL_ROOT := C:/PRojects/ccsv6/tools/compiler/msp430_4.3.3
 ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
 "./helpers.obj" \
-"./main_ed.obj" \
+"./main_ap.obj" \
 "./virtual_com_cmds.obj" \
 "./Components/simpliciti/nwk_applications/nwk_freq.obj" \
 "./Components/simpliciti/nwk_applications/nwk_ioctl.obj" \
@@ -132,40 +132,40 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-TestSimpl.out \
+HomeAutomation.out \
 
 EXE_OUTPUTS__QUOTED += \
-"TestSimpl.out" \
+"HomeAutomation.out" \
 
 BIN_OUTPUTS += \
-TestSimpl.hex \
+HomeAutomation.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"TestSimpl.hex" \
+"HomeAutomation.hex" \
 
 
 # All Target
-all: TestSimpl.out
+all: HomeAutomation.out
 
 # Tool invocations
-TestSimpl.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
+HomeAutomation.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MSP430 Linker'
-	"C:/PRojects/ccsv6/tools/compiler/msp430_4.3.3/bin/cl430" --cmd_file="C:\Users\POKM\workspace_v6_0\TestSimpl\smpl_config.dat" --cmd_file="C:\Users\POKM\workspace_v6_0\TestSimpl\smpl_nwk_config.dat"  -vmsp --abi=eabi --advice:power=all -g --define=__MSP430F2274__ --define=MRFI_CC2500 --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal -z -m"TestSimpl.map" --heap_size=80 --stack_size=80 -i"C:/PRojects/ccsv6/ccs_base/msp430/include" -i"C:/PRojects/ccsv6/tools/compiler/msp430_4.3.3/lib" -i"C:/PRojects/ccsv6/tools/compiler/msp430_4.3.3/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="TestSimpl_linkInfo.xml" --rom_model -o "TestSimpl.out" $(ORDERED_OBJS)
+	"C:/PRojects/ccsv6/tools/compiler/msp430_4.3.3/bin/cl430" --cmd_file="C:\Users\POKM\workspace_v6_0\HomeAutomation\smpl_config.dat" --cmd_file="C:\Users\POKM\workspace_v6_0\HomeAutomation\smpl_nwk_config.dat"  -vmsp --abi=eabi --advice:power=all -g --define=__MSP430F2274__ --define=MRFI_CC2500 --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal -z -m"HomeAutomation.map" --heap_size=80 --stack_size=80 -i"C:/PRojects/ccsv6/ccs_base/msp430/include" -i"C:/PRojects/ccsv6/tools/compiler/msp430_4.3.3/lib" -i"C:/PRojects/ccsv6/tools/compiler/msp430_4.3.3/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="HomeAutomation_linkInfo.xml" --rom_model -o "HomeAutomation.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-TestSimpl.hex: $(EXE_OUTPUTS)
+HomeAutomation.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: MSP430 Hex Utility'
-	"C:/PRojects/ccsv6/tools/compiler/msp430_4.3.3/bin/hex430" --memwidth=8 --romwidth=8 -o "TestSimpl.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/PRojects/ccsv6/tools/compiler/msp430_4.3.3/bin/hex430" --memwidth=8 --romwidth=8 -o "HomeAutomation.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
-	-$(RM) "helpers.pp" "main_ed.pp" "virtual_com_cmds.pp" "Components\simpliciti\nwk_applications\nwk_freq.pp" "Components\simpliciti\nwk_applications\nwk_ioctl.pp" "Components\simpliciti\nwk_applications\nwk_join.pp" "Components\simpliciti\nwk_applications\nwk_link.pp" "Components\simpliciti\nwk_applications\nwk_mgmt.pp" "Components\simpliciti\nwk_applications\nwk_ping.pp" "Components\simpliciti\nwk_applications\nwk_security.pp" "Components\simpliciti\nwk\nwk.pp" "Components\simpliciti\nwk\nwk_QMgmt.pp" "Components\simpliciti\nwk\nwk_api.pp" "Components\simpliciti\nwk\nwk_frame.pp" "Components\simpliciti\nwk\nwk_globals.pp" "Components\mrfi\mrfi.pp" "Components\bsp\bsp.pp" 
-	-$(RM) "helpers.obj" "main_ed.obj" "virtual_com_cmds.obj" "Components\simpliciti\nwk_applications\nwk_freq.obj" "Components\simpliciti\nwk_applications\nwk_ioctl.obj" "Components\simpliciti\nwk_applications\nwk_join.obj" "Components\simpliciti\nwk_applications\nwk_link.obj" "Components\simpliciti\nwk_applications\nwk_mgmt.obj" "Components\simpliciti\nwk_applications\nwk_ping.obj" "Components\simpliciti\nwk_applications\nwk_security.obj" "Components\simpliciti\nwk\nwk.obj" "Components\simpliciti\nwk\nwk_QMgmt.obj" "Components\simpliciti\nwk\nwk_api.obj" "Components\simpliciti\nwk\nwk_frame.obj" "Components\simpliciti\nwk\nwk_globals.obj" "Components\mrfi\mrfi.obj" "Components\bsp\bsp.obj" 
+	-$(RM) "helpers.pp" "main_ap.pp" "virtual_com_cmds.pp" "Components\simpliciti\nwk_applications\nwk_freq.pp" "Components\simpliciti\nwk_applications\nwk_ioctl.pp" "Components\simpliciti\nwk_applications\nwk_join.pp" "Components\simpliciti\nwk_applications\nwk_link.pp" "Components\simpliciti\nwk_applications\nwk_mgmt.pp" "Components\simpliciti\nwk_applications\nwk_ping.pp" "Components\simpliciti\nwk_applications\nwk_security.pp" "Components\simpliciti\nwk\nwk.pp" "Components\simpliciti\nwk\nwk_QMgmt.pp" "Components\simpliciti\nwk\nwk_api.pp" "Components\simpliciti\nwk\nwk_frame.pp" "Components\simpliciti\nwk\nwk_globals.pp" "Components\mrfi\mrfi.pp" "Components\bsp\bsp.pp" 
+	-$(RM) "helpers.obj" "main_ap.obj" "virtual_com_cmds.obj" "Components\simpliciti\nwk_applications\nwk_freq.obj" "Components\simpliciti\nwk_applications\nwk_ioctl.obj" "Components\simpliciti\nwk_applications\nwk_join.obj" "Components\simpliciti\nwk_applications\nwk_link.obj" "Components\simpliciti\nwk_applications\nwk_mgmt.obj" "Components\simpliciti\nwk_applications\nwk_ping.obj" "Components\simpliciti\nwk_applications\nwk_security.obj" "Components\simpliciti\nwk\nwk.obj" "Components\simpliciti\nwk\nwk_QMgmt.obj" "Components\simpliciti\nwk\nwk_api.obj" "Components\simpliciti\nwk\nwk_frame.obj" "Components\simpliciti\nwk\nwk_globals.obj" "Components\mrfi\mrfi.obj" "Components\bsp\bsp.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
