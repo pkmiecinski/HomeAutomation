@@ -8,7 +8,8 @@ CG_TOOL_ROOT := C:/PRojects/ccsv6/tools/compiler/msp430_4.3.3
 
 ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
-"./main_LinkListen.obj" \
+"./helpers.obj" \
+"./main_ap.obj" \
 "./virtual_com_cmds.obj" \
 "./Components/simpliciti/nwk_applications/nwk_freq.obj" \
 "./Components/simpliciti/nwk_applications/nwk_ioctl.obj" \
@@ -163,8 +164,8 @@ TestSimpl.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
-	-$(RM) "main_LinkListen.pp" "virtual_com_cmds.pp" "Components\simpliciti\nwk_applications\nwk_freq.pp" "Components\simpliciti\nwk_applications\nwk_ioctl.pp" "Components\simpliciti\nwk_applications\nwk_join.pp" "Components\simpliciti\nwk_applications\nwk_link.pp" "Components\simpliciti\nwk_applications\nwk_mgmt.pp" "Components\simpliciti\nwk_applications\nwk_ping.pp" "Components\simpliciti\nwk_applications\nwk_security.pp" "Components\simpliciti\nwk\nwk.pp" "Components\simpliciti\nwk\nwk_QMgmt.pp" "Components\simpliciti\nwk\nwk_api.pp" "Components\simpliciti\nwk\nwk_frame.pp" "Components\simpliciti\nwk\nwk_globals.pp" "Components\mrfi\mrfi.pp" "Components\bsp\bsp.pp" 
-	-$(RM) "main_LinkListen.obj" "virtual_com_cmds.obj" "Components\simpliciti\nwk_applications\nwk_freq.obj" "Components\simpliciti\nwk_applications\nwk_ioctl.obj" "Components\simpliciti\nwk_applications\nwk_join.obj" "Components\simpliciti\nwk_applications\nwk_link.obj" "Components\simpliciti\nwk_applications\nwk_mgmt.obj" "Components\simpliciti\nwk_applications\nwk_ping.obj" "Components\simpliciti\nwk_applications\nwk_security.obj" "Components\simpliciti\nwk\nwk.obj" "Components\simpliciti\nwk\nwk_QMgmt.obj" "Components\simpliciti\nwk\nwk_api.obj" "Components\simpliciti\nwk\nwk_frame.obj" "Components\simpliciti\nwk\nwk_globals.obj" "Components\mrfi\mrfi.obj" "Components\bsp\bsp.obj" 
+	-$(RM) "helpers.pp" "main_ap.pp" "virtual_com_cmds.pp" "Components\simpliciti\nwk_applications\nwk_freq.pp" "Components\simpliciti\nwk_applications\nwk_ioctl.pp" "Components\simpliciti\nwk_applications\nwk_join.pp" "Components\simpliciti\nwk_applications\nwk_link.pp" "Components\simpliciti\nwk_applications\nwk_mgmt.pp" "Components\simpliciti\nwk_applications\nwk_ping.pp" "Components\simpliciti\nwk_applications\nwk_security.pp" "Components\simpliciti\nwk\nwk.pp" "Components\simpliciti\nwk\nwk_QMgmt.pp" "Components\simpliciti\nwk\nwk_api.pp" "Components\simpliciti\nwk\nwk_frame.pp" "Components\simpliciti\nwk\nwk_globals.pp" "Components\mrfi\mrfi.pp" "Components\bsp\bsp.pp" 
+	-$(RM) "helpers.obj" "main_ap.obj" "virtual_com_cmds.obj" "Components\simpliciti\nwk_applications\nwk_freq.obj" "Components\simpliciti\nwk_applications\nwk_ioctl.obj" "Components\simpliciti\nwk_applications\nwk_join.obj" "Components\simpliciti\nwk_applications\nwk_link.obj" "Components\simpliciti\nwk_applications\nwk_mgmt.obj" "Components\simpliciti\nwk_applications\nwk_ping.obj" "Components\simpliciti\nwk_applications\nwk_security.obj" "Components\simpliciti\nwk\nwk.obj" "Components\simpliciti\nwk\nwk_QMgmt.obj" "Components\simpliciti\nwk\nwk_api.obj" "Components\simpliciti\nwk\nwk_frame.obj" "Components\simpliciti\nwk\nwk_globals.obj" "Components\mrfi\mrfi.obj" "Components\bsp\bsp.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

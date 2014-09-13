@@ -15,6 +15,7 @@ virtual_com_cmds.obj: C:/Texas\ Instruments/SimpliciTI-CCS-1.1.1/Components/bsp/
 virtual_com_cmds.obj: C:/Texas\ Instruments/SimpliciTI-CCS-1.1.1/Components/bsp/bsp_macros.h
 virtual_com_cmds.obj: ../virtual_com_cmds.h
 virtual_com_cmds.obj: C:/PRojects/ccsv6/tools/compiler/msp430_4.3.3/include/string.h
+virtual_com_cmds.obj: C:/PRojects/ccsv6/tools/compiler/msp430_4.3.3/include/string.h
 
 ../virtual_com_cmds.c: 
 C:/PRojects/ccsv6/tools/compiler/msp430_4.3.3/include/string.h: 
@@ -30,4 +31,5 @@ C:/PRojects/ccsv6/tools/compiler/msp430_4.3.3/include/intrinsics.h:
 C:/Texas\ Instruments/SimpliciTI-CCS-1.1.1/Components/bsp/boards/EZ430RF/bsp_config.h: 
 C:/Texas\ Instruments/SimpliciTI-CCS-1.1.1/Components/bsp/bsp_macros.h: 
 ../virtual_com_cmds.h: 
+C:/PRojects/ccsv6/tools/compiler/msp430_4.3.3/include/string.h: 
 C:/PRojects/ccsv6/tools/compiler/msp430_4.3.3/include/string.h: 

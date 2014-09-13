@@ -7,27 +7,33 @@ CMD_SRCS += \
 ../lnk_msp430f2274.cmd 
 
 C_SRCS += \
-../main_LinkListen.c \
+../helpers.c \
+../main_ap.c \
 ../virtual_com_cmds.c 
 
 OBJS += \
-./main_LinkListen.obj \
+./helpers.obj \
+./main_ap.obj \
 ./virtual_com_cmds.obj 
 
 C_DEPS += \
-./main_LinkListen.pp \
+./helpers.pp \
+./main_ap.pp \
 ./virtual_com_cmds.pp 
 
 C_DEPS__QUOTED += \
-"main_LinkListen.pp" \
+"helpers.pp" \
+"main_ap.pp" \
 "virtual_com_cmds.pp" 
 
 OBJS__QUOTED += \
-"main_LinkListen.obj" \
+"helpers.obj" \
+"main_ap.obj" \
 "virtual_com_cmds.obj" 
 
 C_SRCS__QUOTED += \
-"../main_LinkListen.c" \
+"../helpers.c" \
+"../main_ap.c" \
 "../virtual_com_cmds.c" 
 
 

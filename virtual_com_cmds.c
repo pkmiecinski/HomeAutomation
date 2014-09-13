@@ -36,6 +36,7 @@
 #include <string.h>
 #include "bsp.h"
 #include "virtual_com_cmds.h"
+#include "string.h"
 
 static char verboseMode = 1;
 static char degCMode = 0;
@@ -98,6 +99,12 @@ void TXString( char* string, int length )
     UCA0TXBUF = string[pointer];
     while (!(IFG2&UCA0TXIFG));              // USCI_A0 TX buffer ready?
   }
+}
+
+void trace(char *string)
+{
+	int s = strlen(string);
+	TXString(string,s);
 }
 
 void transmitDataString(char data_mode, char addr[4],char rssi[3], char msg[MESSAGE_LENGTH] )

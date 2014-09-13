@@ -41,6 +41,7 @@
 #define MESSAGE_LENGTH 3
 
 void COM_Init(void);
+void trace(char *);
 void TXString( char* string, int length );
 void transmitData(int addr, signed char rssi,  char msg[MESSAGE_LENGTH] );
 void transmitDataString(char data_mode, char addr[4],char rssi[3], char msg[MESSAGE_LENGTH]);
