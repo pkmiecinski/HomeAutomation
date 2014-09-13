@@ -89,7 +89,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="main_ed.c|main_LinkTo.c|Components/mrfi/smartrf|Components/mrfi/radios|Components/bsp/mcus|Components/bsp/drivers|Components/bsp/boards" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="main_ap.c|main_LinkTo.c|Components/mrfi/smartrf|Components/mrfi/radios|Components/bsp/mcus|Components/bsp/drivers|Components/bsp/boards" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

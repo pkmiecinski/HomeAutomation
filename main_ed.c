@@ -22,10 +22,6 @@ static uint8_t sRxCallback(linkID_t);
 
 static void ed_loop()
 {
-	int retVal = SMPL_NO_ACK;
-
-	int retr = 0;
-
 	while (SMPL_SUCCESS != SMPL_Link(&sLinkID1))
 	{
 		/* blink LEDs until we link successfully */
@@ -47,17 +43,10 @@ static void ed_loop()
 	{
 		if (commandToProcess)
 		{
-			retr = 5;
-			NWK_DELAY(1000);
-			while((retVal != SMPL_SUCCESS)||(retr!=0))
-			{
-				retVal =  SMPL_Send(sLinkID1, txMsg, sizeof(txMsg));
-				toggleLED(2);
-				NWK_DELAY(1000);
-
-				retr--;
-			}
-
+			NWK_DELAY(100);
+		    SMPL_Send(sLinkID1, txMsg, sizeof(txMsg));
+			toggleLED(2);
+			NWK_DELAY(100);
 			commandToProcess = 0;
 
 		}
@@ -82,53 +71,54 @@ static uint8_t sRxCallback(linkID_t port)
 		  {
 			  case ED_GET_TEMP_IN:
 			  {
-				  txMsg[0] = 1;
-				  txMsg[1] = 2;
-				  txMsg[2] = 3;
-				  txMsg[3] = 4;
+				  txMsg[0] = 0x1;
+				  txMsg[1] = 0x2;
+				  txMsg[2] = 0x3;
+				  txMsg[3] = 0x4;
 				  break;
 			  }
 			  case ED_GET_TEMP_OUT:
 			  {
-				  txMsg[0] = 5;
-				  txMsg[1] = 6;
-				  txMsg[2] = 7;
-				  txMsg[3] = 8;
+				  txMsg[0] = 0x5;
+				  txMsg[1] = 0x6;
+				  txMsg[2] = 0x7;
+				  txMsg[3] = 0x8;
 				  break;
 			  }
 			  case ED_GET_HUM:
 			  {
-				  txMsg[0] = 9;
-				  txMsg[1] = 10;
-				  txMsg[2] = 11;
-				  txMsg[3] = 12;
+				  txMsg[0] = 0x9;
+				  txMsg[1] = 0xA;
+				  txMsg[2] = 0xB;
+				  txMsg[3] = 0xC;
 				  break;
 			  }
 			  case ED_GET_RAIN:
 			  {
-				  txMsg[0] = 13;
-				  txMsg[1] = 14;
-				  txMsg[2] = 15;
-				  txMsg[3] = 16;
+				  txMsg[0] = 0xD;
+				  txMsg[1] = 0xE;
+				  txMsg[2] = 0xF;
+				  txMsg[3] = 0x0;
 				  break;
 			  }
 			  case ED_GET_WINDOWS_STATE:
 			  {
-				  txMsg[0] = 17;
-				  txMsg[1] = 18;
-				  txMsg[2] = 19;
-				  txMsg[3] = 20;
+				  txMsg[0] = 0x1;
+				  txMsg[1] = 0x2;
+				  txMsg[2] = 0x4;
+				  txMsg[3] = 0x8;
 				  break;
 			  }
 			  default:
 			  {
-				  txMsg[0] = 0xFF;
-				  txMsg[1] = 0xFF;
-				  txMsg[2] = 0xFF;
-				  txMsg[3] = 0xFF;
+				  txMsg[0] = 0xF;
+				  txMsg[1] = 0xF;
+				  txMsg[2] = 0xF;
+				  txMsg[3] = 0xF;
 				  break;
 			  }
 		  }
+		  NWK_DELAY(100);
 		  commandToProcess = 1;
 
 	  return 1;

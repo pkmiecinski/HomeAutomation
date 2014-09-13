@@ -8,32 +8,32 @@ CMD_SRCS += \
 
 C_SRCS += \
 ../helpers.c \
-../main_ap.c \
+../main_ed.c \
 ../virtual_com_cmds.c 
 
 OBJS += \
 ./helpers.obj \
-./main_ap.obj \
+./main_ed.obj \
 ./virtual_com_cmds.obj 
 
 C_DEPS += \
 ./helpers.pp \
-./main_ap.pp \
+./main_ed.pp \
 ./virtual_com_cmds.pp 
 
 C_DEPS__QUOTED += \
 "helpers.pp" \
-"main_ap.pp" \
+"main_ed.pp" \
 "virtual_com_cmds.pp" 
 
 OBJS__QUOTED += \
 "helpers.obj" \
-"main_ap.obj" \
+"main_ed.obj" \
 "virtual_com_cmds.obj" 
 
 C_SRCS__QUOTED += \
 "../helpers.c" \
-"../main_ap.c" \
+"../main_ed.c" \
 "../virtual_com_cmds.c" 
 
 

@@ -45,6 +45,7 @@ void trace(char *);
 void TXString( char* string, int length );
 void transmitData(int addr, signed char rssi,  char msg[MESSAGE_LENGTH] );
 void transmitDataString(char data_mode, char addr[4],char rssi[3], char msg[MESSAGE_LENGTH]);
+char* itoa(int value, char* result, int base);
 __interrupt void USCI0RX_ISR(void);
 
 
